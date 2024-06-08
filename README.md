@@ -1,5 +1,5 @@
 <h1 align="center">
-<img src="./src/images/capa.png" width="300">
+<img src="./src/images/capa.png" width="600">
 </h1><br>
 
 Projeto de aplicação React Native modelo para disciplina de programação mobile.
