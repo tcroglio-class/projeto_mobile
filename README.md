@@ -1,4 +1,7 @@
-# projeto_mobile
+<h1 align="center">
+<img src="./src/images/capa.png" width="300">
+</h1><br>
+
 Projeto de aplicação React Native modelo para disciplina de programação mobile.
 
 O projeto já está previamente configurado mas há alguns passos a serem executados:
