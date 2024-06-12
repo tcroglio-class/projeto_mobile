@@ -3,21 +3,21 @@ import { StyleSheet, View } from "react-native";
 const ExemploStylesView = () => {
     return (
         <>
-            <View style={styles.container_fixo}>
-                <View style={[styles.fundo_azul, 
-                    styles.tamanho_50, styles.borda]} />
-                <View style={[styles.fundo_laranja, 
-                    styles.tamanho_50, styles.borda]} />
-                <View style={[styles.fundo_verde, 
-                    styles.tamanho_50, styles.borda]} />
+            <View style={styles_local.container_fixo}>
+                <View style={[styles_local.fundo_azul, 
+                    styles_local.tamanho_50, styles_local.borda]} />
+                <View style={[styles_local.fundo_laranja, 
+                    styles_local.tamanho_50, styles_local.borda]} />
+                <View style={[styles_local.fundo_verde, 
+                    styles_local.tamanho_50, styles_local.borda]} />
             </View>
-            <View style={styles.container_flex}>
-                <View style={[styles.fundo_azul, 
-                    styles.flex_pequeno, styles.borda]} />
-                <View style={[styles.fundo_laranja, 
-                    styles.flex_grande, styles.borda]} />
-                <View style={[styles.fundo_verde, 
-                    styles.flex_grande, styles.borda]} />
+            <View style={styles_local.container_flex}>
+                <View style={[styles_local.fundo_azul, 
+                    styles_local.flex_pequeno, styles_local.borda]} />
+                <View style={[styles_local.fundo_laranja, 
+                    styles_local.flex_grande, styles_local.borda]} />
+                <View style={[styles_local.fundo_verde, 
+                    styles_local.flex_grande, styles_local.borda]} />
             </View>
         </>
     );
@@ -25,7 +25,7 @@ const ExemploStylesView = () => {
 
 export default ExemploStylesView;
 
-const styles = StyleSheet.create({
+const styles_local = StyleSheet.create({
     container_fixo: {
         //valor de preenchimento da área disponível
         flex: 1,
@@ -35,8 +35,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         //posicionamento dos objetos no eixo secundário
         alignItems: 'stretch',
-
+        //cor de fundo
         backgroundColor: 'red',
+        //margem
         margin: 10,
     },
     container_flex: {
@@ -44,17 +45,21 @@ const styles = StyleSheet.create({
         flex: 2,
         //definição do eixo principal
         flexDirection: 'row',
-
+        //cor de fundo
         backgroundColor: '#FFFACD',
+        //margem
         margin: 10,
     },
     fundo_azul: {
+        //cor de fundo
         backgroundColor: 'blue'
     },
     fundo_laranja: {
+        //cor de fundo
         backgroundColor: 'orange'
     },
     fundo_verde: {
+        //cor de fundo
         backgroundColor: 'green'
     },
     tamanho_50: {
@@ -72,7 +77,9 @@ const styles = StyleSheet.create({
         flex: 2
     },
     borda: {
+        //cor da borda
         borderColor: 'black',
+        //espessura da borda
         borderWidth: 5
     }
 });

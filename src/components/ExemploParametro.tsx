@@ -1,14 +1,15 @@
 import React from 'react';
 import {Text} from 'react-native';
+import { styles } from '../styles/styles';
 
-type Props = {
+type NomeProps = {
     nome:string;
     sobrenome: string;
 }
 
-const NomePersonalizado = (props: Props) => {
+const NomePersonalizado = (props: NomeProps) => {
   return (
-    <Text style={{fontSize: 40, color: 'red'}}>
+    <Text style={styles.titulo2}>
         {props.nome + ' ' + props.sobrenome}
     </Text>
   )

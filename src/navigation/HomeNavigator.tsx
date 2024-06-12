@@ -1,5 +1,5 @@
 import { NativeStackScreenProps, createNativeStackNavigator } from "@react-navigation/native-stack";
-import TelaPrincipal from "../layout/TelaPrincipal";
+import TelaPrincipal from "../layouts/TelaPrincipal";
 
 type RootStackParamList = {
     TelaPrincipal: undefined;
