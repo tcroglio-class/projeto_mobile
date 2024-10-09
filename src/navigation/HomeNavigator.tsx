@@ -14,7 +14,7 @@ const HomeNavigator = () => {
         <Stack.Navigator 
             initialRouteName="TelaPrincipal" 
             screenOptions={{headerShown: false}}>
-            <Stack.Screen name="TelaPrincipal" component={TelaLogin} />
+            <Stack.Screen name="TelaPrincipal" component={TelaPrincipal} />
         </Stack.Navigator>
     );
 }

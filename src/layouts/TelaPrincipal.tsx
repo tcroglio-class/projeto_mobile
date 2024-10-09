@@ -4,17 +4,18 @@ import { PrincipalProps } from '../navigation/HomeNavigator';
 import HelloWorld from '../components/HelloWorld';
 import { styles } from '../styles/styles';
 import Exemplo1 from '../components/Exemplo1';
+import ExemploCalculo from '../components/ExemploCalculo';
+import Aprovado from '../components/Aprovado';
 
-// componente chamado TelaPrincipal que recebe PrincipalProps como parametro e constroi uma view com o componente helloWorld e Exemplo1 dentro
 const TelaPrincipal = (props: PrincipalProps) => {
     return (
         <View
             style={styles.tela}>
-            <HelloWorld />
-            <Exemplo1 />
+            <ExemploCalculo valor1={1} valor2={2}></ExemploCalculo>
+            <Aprovado nome={'tiago'} valor1={10} valor2={6}></Aprovado>
+
         </View>
     );
 }
 
-// exportanto o componente TelaPrincipal para ficar visível 
 export default TelaPrincipal;
