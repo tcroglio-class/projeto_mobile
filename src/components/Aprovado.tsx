@@ -17,7 +17,7 @@ const Aprovado = (props: CalculoProps) => {
 	}
 
 	let media = (props.valor1 + props.valor2) / 2;
-	let retorno = '';
+	let retorno = ''; 
 
 	if (media >= 7) {
 		retorno = `Parabéns ${firstLetterUpperCase(props.nome)}, você foi aprovado!`;
