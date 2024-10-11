@@ -43,7 +43,11 @@ const styles = StyleSheet.create({
     imagem_200: {
         width: 200,
         height: 200
-    }
+    }, 
+
+    click: {
+        opacity: 50
+    },
 });
 
 export {styles};

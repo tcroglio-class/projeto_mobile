@@ -2,11 +2,11 @@ import React from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
 
 
-type listaProdutos = {
+type listaProducts = {
 	listaDePessoas: string[]
 }
 
-const ListaProdutos = (props: listaProdutos) => {
+const ListaProdutos = (props: listaProducts) => {
 
 	return (
 		<FlatList data={props.listaDePessoas}
