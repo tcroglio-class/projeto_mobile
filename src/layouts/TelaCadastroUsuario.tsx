@@ -1,26 +1,26 @@
-import React from 'react';
-import { View, Image, ScrollView, TextInput, Pressable, Text, Alert } from 'react-native';
+import React, { useState } from 'react';
+import { Alert, Image, Pressable, Text, TextInput, View } from 'react-native';
+import { LoginProps } from '../navigation/HomeNavigator';
+import Login from '../components/Login';
 import { styles } from '../styles/login-styles';
-import { useState } from "react";
 
-
-const Login = () => {
+const TelaCadastroUsuario = (props: LoginProps) => {
 	const [email, setEmail] = useState('');
 	const [senha, setSenha] = useState('');
+	const [confirmSenha, setConfirmSenha] = useState('');
 
 
-	function exibeLogin() {
+	function fazerLogin() {
 		Alert.alert(
 			'Informações de login: ',
 			'Email: ' + email +
-			'\nSenha: ' + senha
+			'\nSenha: ' + senha +
+			'\nConfirmação de senha: ' + confirmSenha
 		)
 	}
 
 	return (
-		<ScrollView>
-
-
+		<View style={styles.tela}>
 			<View style={styles.content}>
 				<Image
 					source={require('../images/twitter.png')}
@@ -33,7 +33,7 @@ const Login = () => {
 							setEmail(text);
 						}}
 						style={styles.caixa_texto}
-						placeholder="Usuário"
+						placeholder="Email"
 					/>
 					<TextInput
 						onChangeText={(text) => {
@@ -42,8 +42,15 @@ const Login = () => {
 						style={styles.caixa_texto}
 						placeholder="Senha"
 					/>
+					<TextInput
+						onChangeText={(text) => {
+							setConfirmSenha(text);
+						}}
+						style={styles.caixa_texto}
+						placeholder="Confirme sua senha"
+					/>
 					<Pressable style={(state) => [styles.botao, state.pressed ? { opacity: 0.5 } : null]}
-						onPress={() => { exibeLogin() }}>
+						onPress={() => { fazerLogin() }}>
 						<Text style={styles.texto_botao}>Login</Text>
 					</Pressable>
 				</View>
@@ -59,9 +66,9 @@ const Login = () => {
 
 			</View>
 
-		</ScrollView>
+
+		</View>
 	);
-};
+}
 
-
-export default Login;
+export default TelaCadastroUsuario;
