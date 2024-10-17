@@ -7,7 +7,7 @@ const TelaLogin = (props: LoginProps) => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
-    function exibeLogin() {
+    function fazerLogin() {
         Alert.alert(
             'Informações de login: ',
             'Email: ' + email +
@@ -17,6 +17,12 @@ const TelaLogin = (props: LoginProps) => {
         props.navigation.navigate(
             'TelaPrincipal',
             { texto: email }
+        )
+    }
+
+    function cadastrarUsuario() {
+        props.navigation.navigate(
+            'TelaCadastroUsuario',
         )
     }
 
@@ -45,7 +51,7 @@ const TelaLogin = (props: LoginProps) => {
                             placeholder="Senha"
                         />
                         <Pressable style={(state) => [styles.botao, state.pressed ? { opacity: 0.5 } : null]}
-                            onPress={() => { exibeLogin() }}>
+                            onPress={() => { fazerLogin() }}>
                             <Text style={styles.texto_botao}>Login</Text>
                         </Pressable>
                     </View>
@@ -54,7 +60,8 @@ const TelaLogin = (props: LoginProps) => {
                         <Pressable style={styles.botao}>
                             <Text style={styles.texto_botao}>Esqueci minha senha</Text>
                         </Pressable>
-                        <Pressable style={styles.botao}>
+                        <Pressable style={styles.botao}
+                            onPress={() => { cadastrarUsuario() }}>
                             <Text style={styles.texto_botao}>Cadastre-se</Text>
                         </Pressable>
                     </View>

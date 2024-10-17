@@ -1,22 +1,26 @@
 import React, { useState } from 'react';
 import { Alert, Image, Pressable, Text, TextInput, View } from 'react-native';
-import { LoginProps } from '../navigation/HomeNavigator';
-import Login from '../components/Login';
+import { CadastroUsuarioProps } from '../navigation/HomeNavigator';
 import { styles } from '../styles/login-styles';
 
-const TelaCadastroUsuario = (props: LoginProps) => {
+import auth from "@react-native-firebase/auth";
+
+const TelaCadastroUsuario = (props: CadastroUsuarioProps) => {
 	const [email, setEmail] = useState('');
 	const [senha, setSenha] = useState('');
 	const [confirmSenha, setConfirmSenha] = useState('');
 
 
-	function fazerLogin() {
-		Alert.alert(
-			'Informações de login: ',
-			'Email: ' + email +
-			'\nSenha: ' + senha +
-			'\nConfirmação de senha: ' + confirmSenha
-		)
+	function cadastrar() {
+		auth()
+			.createUserWithEmailAndPassword(email, senha)
+			.then(() => {
+				Alert.alert(
+					"Conta",
+					"Cadastrado com sucesso!"
+				)
+				props.navigation.goBack();
+			})
 	}
 
 	return (
@@ -24,10 +28,11 @@ const TelaCadastroUsuario = (props: LoginProps) => {
 			<View style={styles.content}>
 				<Image
 					source={require('../images/twitter.png')}
-					style={styles.imagem_250}
+					style={styles.imagem_150}
 				/>
 
 				<View style={styles.inputContent}>
+					<Text style={[styles.texto_botao, { fontSize: 20, marginBottom: 10 }]}>Criar novo usuário</Text>
 					<TextInput
 						onChangeText={(text) => {
 							setEmail(text);
@@ -50,23 +55,19 @@ const TelaCadastroUsuario = (props: LoginProps) => {
 						placeholder="Confirme sua senha"
 					/>
 					<Pressable style={(state) => [styles.botao, state.pressed ? { opacity: 0.5 } : null]}
-						onPress={() => { fazerLogin() }}>
-						<Text style={styles.texto_botao}>Login</Text>
+						onPress={() => { cadastrar() }}>
+						<Text style={styles.texto_botao}>Cadastrar</Text>
 					</Pressable>
 				</View>
 
-				<View style={styles.buttonContent}>
-					<Pressable style={styles.botao}>
-						<Text style={styles.texto_botao}>Esqueci minha senha</Text>
-					</Pressable>
-					<Pressable style={styles.botao}>
-						<Text style={styles.texto_botao}>Cadastre-se</Text>
+				<View style={[styles.buttonContent, { marginTop: 80 }]}>
+					<Pressable style={styles.botao}
+						onPress={() => { props.navigation.goBack(); }}>
+						<Text style={styles.texto_botao}>Voltar</Text>
 					</Pressable>
 				</View>
 
 			</View>
-
-
 		</View>
 	);
 }

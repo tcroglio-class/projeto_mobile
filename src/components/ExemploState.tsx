@@ -1,7 +1,6 @@
 import { Alert, Pressable, Text, TextInput, View } from "react-native";
 import { styles } from "../styles/styles";
 import { useState } from "react";
-import { Produto } from "../types/Produto";
 
 const ExemploState = () => {
 	const [frase, setFrase] = useState('bom dia');
@@ -20,7 +19,7 @@ const ExemploState = () => {
 
 	return (
 		<View style={{ flex: 1, alignItems: 'center' }}>
-			<Text style={{ fontSize: 40 }}>
+			<Text style={{ fontSize: 1000 }}>
 				Frase
 			</Text>
 
@@ -37,8 +36,8 @@ const ExemploState = () => {
 				style={(state) => [styles.botao, state.pressed && styles.click]}
 				onPress={() => { exibirMensagem() }}
 			>
-				<Text style={styles.texto_botao}>
-					Entrar
+				<Text style={[styles.texto_botao, { color: 'black' }]}>
+					Testar state
 				</Text>
 			</Pressable>
 		</View>

@@ -19,12 +19,12 @@ const ExemploConstrucaoCondicao = () => {
 
 	return (
 		<View style={{ flex: 1, alignItems: 'center' }}>
-			<Text style={{ fontSize: 40 }}>
+			<Text style={{ fontSize: 40, color: 'black' }}>
 				Frase
 			</Text>
 
 			<TextInput
-				style={[styles.caixa_texto, { width: 150 }]}
+				style={[styles.caixa_texto, { width: 150, color: 'black' }]}
 				onChangeText={(text) => {
 					console.log(text);
 					setFrase(text);
@@ -57,12 +57,12 @@ const ExemploConstrucaoCondicao = () => {
 
 			{
 				frase.length >= 10 ?
-					<Text style={{ fontSize: 40 }}> Condição é verdade </Text>
+					<Text style={{ fontSize: 40, color: 'black' }}> Condição é verdade </Text>
 					:
 					(frase.length > 0 ?
-						<Text style={{ fontSize: 40 }}> Condição é falsa </Text>
+						<Text style={{ fontSize: 40, color: 'black' }}> Condição é falsa </Text>
 						:
-						<Text style={{ fontSize: 40 }}> Condição é vazia </Text>
+						<Text style={{ fontSize: 40, color: 'black' }}> Condição é vazia </Text>
 					)
 			}
 		</View>

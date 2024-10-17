@@ -1,25 +1,33 @@
 import React from 'react';
 import { PrincipalProps } from '../navigation/HomeNavigator';
 import ExemploEvento from '../components/ExemploEvento';
-import { Pressable, Text } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
 const TelaPrincipal = (props: PrincipalProps) => {
 
+
+    function constroiTela(elemento: number) {
+        props.navigation.navigate(
+            'TelaElementos'
+        )
+    }
+
     return (
         <>
-            <ExemploEvento></ExemploEvento>
-            <Text style={{ fontSize: 40, color: 'black' }}>
-                {props.route.params.texto}
-            </Text>
-            
-            <Pressable
-                style={{ backgroundColor: 'green' }}
-                onPress={() => { props.navigation.goBack() }}
-            >
-                <Text style={{ fontSize: 40 }}>Voltar</Text>
-            </Pressable>
-
-
+            <View style={{ padding: 10, gap: 20, marginTop: 230 }}>
+                <Pressable
+                    style={{ backgroundColor: 'green', padding: 5, borderRadius: 10 }}
+                    onPress={() => { constroiTela(1) }}
+                >
+                    <Text style={{ fontSize: 30, textAlign: 'center' }}>tela de elementos</Text>
+                </Pressable>
+                <Pressable
+                    style={{ backgroundColor: 'green', padding: 5, borderRadius: 10 }}
+                    onPress={() => { props.navigation.goBack() }}
+                >
+                    <Text style={{ fontSize: 30, textAlign: 'center' }}>Voltar</Text>
+                </Pressable>
+            </View>
         </>
     );
 }
