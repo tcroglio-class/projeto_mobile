@@ -1,56 +1,59 @@
 import React, { useState } from 'react';
 import { Alert, Image, Pressable, Text, TextInput, View } from 'react-native';
-import { CadastroUsuarioProps } from '../navigation/HomeNavigator';
+import { CadastrarProdutoProps } from '../navigation/HomeNavigator';
 import { styles } from '../styles/login-styles';
+import { Produto } from '../types/Produto';
 
-import auth from "@react-native-firebase/auth";
+import firestore from "@react-native-firebase/firestore";
 
-const TelaCadastroUsuario = (props: CadastroUsuarioProps) => {
-	const [email, setEmail] = useState('');
-	const [senha, setSenha] = useState('');
-	const [confirmSenha, setConfirmSenha] = useState('');
+const TelaCadastroProduto = (props: CadastrarProdutoProps) => {
+	const [nome, setNome] = useState('');
+	const [codigoDeBarras, setCodigoDeBarras] = useState('');
+	const [preco, setPreco] = useState('');
 
 
 	function cadastrar() {
 		if (verificaCampos()) {
-			auth()
-				.createUserWithEmailAndPassword(email, senha)
+
+			let produto = {
+				nome: nome,
+				codigoDeBarras: codigoDeBarras,
+				preco: Number.parseFloat(preco)
+			} as Produto;
+
+			firestore()
+				.collection('produtos')
+				.add(produto)
 				.then(() => {
 					Alert.alert(
-						"Conta",
+						"Produto",
 						"Cadastrado com sucesso!"
 					)
 					props.navigation.goBack();
 				})
-				.catch((error) => { tratarErros(String(error)) });
+				.catch((error) => console.log(error));
 		}
 	}
 
 	function verificaCampos(): boolean {
-		if (email == '') {
+		if (nome == '') {
 			Alert.alert(
-				"Email em branco",
-				"Informe um email para realizar o cadastro."
+				"Nome em branco",
+				"Informe um nome para realizar o cadastro."
 			)
 			return false;
 		}
-		if (senha.length < 6) {
+		if (codigoDeBarras == '') {
 			Alert.alert(
-				"Senha inválida",
-				"A senha deve ter mais do que 6 dígitos."
-			)
-		}
-		if (senha == '') {
-			Alert.alert(
-				"Senha em branco",
-				"Informe uma senha para realizar o cadastro."
+				"Codigo de barras em branco",
+				"Informe um código de barras para realizar o cadastro."
 			)
 			return false;
 		}
-		if (senha != confirmSenha) {
+		if (preco == '') {
 			Alert.alert(
-				"As senhas não coincidem",
-				"Digite a confirmação de senha corretamente."
+				"Preço em branco",
+				"Informe um preço para realizar o cadastro."
 			)
 			return false;
 		}
@@ -91,27 +94,27 @@ const TelaCadastroUsuario = (props: CadastroUsuarioProps) => {
 				/>
 
 				<View style={styles.inputContent}>
-					<Text style={[styles.texto_botao, { fontSize: 20, marginBottom: 10 }]}>Cadastre-se</Text>
+					<Text style={[styles.texto_botao, { fontSize: 20, marginBottom: 10 }]}>Cadastrar produto</Text>
 					<TextInput
 						onChangeText={(text) => {
-							setEmail(text);
+							setNome(text);
 						}}
 						style={styles.caixa_texto}
-						placeholder="Email"
+						placeholder="Nome"
 					/>
 					<TextInput
 						onChangeText={(text) => {
-							setSenha(text);
+							setCodigoDeBarras(text);
 						}}
 						style={styles.caixa_texto}
-						placeholder="Senha"
+						placeholder="Código de barras"
 					/>
 					<TextInput
 						onChangeText={(text) => {
-							setConfirmSenha(text);
+							setPreco(text);
 						}}
 						style={styles.caixa_texto}
-						placeholder="Confirme sua senha"
+						placeholder="Preço"
 					/>
 					<Pressable style={(state) => [styles.botao, state.pressed ? { opacity: 0.5 } : null]}
 						onPress={() => { cadastrar() }}>
@@ -131,4 +134,4 @@ const TelaCadastroUsuario = (props: CadastroUsuarioProps) => {
 	);
 }
 
-export default TelaCadastroUsuario;
+export default TelaCadastroProduto;

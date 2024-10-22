@@ -4,6 +4,7 @@ import TelaLogin from "../layouts/TelaLogin";
 import TelaElemento from "../layouts/TelaElemento";
 import TelaElementos from "../layouts/TelaElementos";
 import TelaCadastroUsuario from "../layouts/TelaCadastroUsuario";
+import TelaCadastroProduto from "../layouts/TelaCadastroProduto";
 
 type RootStackParamList = {
     TelaPrincipal: { texto: string };
@@ -11,6 +12,7 @@ type RootStackParamList = {
     TelaElemento: { elemento: number };
     TelaElementos: undefined;
     TelaCadastroUsuario: undefined;
+    TelaCadastroProduto: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -31,6 +33,9 @@ const HomeNavigator = () => {
 
             <Stack.Screen name="TelaCadastroUsuario" component={TelaCadastroUsuario} />
 
+            <Stack.Screen name="TelaCadastroProduto" component={TelaCadastroProduto} />
+
+
         </Stack.Navigator>
     );
 }
@@ -49,6 +54,10 @@ type ElementosProps = NativeStackScreenProps<RootStackParamList,
 
 type CadastroUsuarioProps = NativeStackScreenProps<RootStackParamList,
     'TelaCadastroUsuario'>;
+    
+type CadastrarProdutoProps = NativeStackScreenProps<RootStackParamList,
+    'TelaCadastroProduto'>;
+
 
 export default HomeNavigator;
 export type {
@@ -56,5 +65,6 @@ export type {
     LoginProps,
     ElementoProps,
     ElementosProps,
-    CadastroUsuarioProps
+    CadastroUsuarioProps,
+    CadastrarProdutoProps,
 };

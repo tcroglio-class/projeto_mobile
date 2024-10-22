@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: 'white'
     },
-    
+
     caixa_texto: {
         color: 'black',
         fontSize: 20,
@@ -43,11 +43,29 @@ const styles = StyleSheet.create({
     imagem_200: {
         width: 200,
         height: 200
-    }, 
+    },
 
     click: {
         opacity: 50
     },
+    card: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: '#f8f8f8',
+        padding: 15,
+        borderRadius: 10,
+        marginVertical: 10,
+        shadowColor: '#000',
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        elevation: 3,
+    },
+    centralizar: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20,
+    },
 });
 
-export {styles};
+export { styles };
