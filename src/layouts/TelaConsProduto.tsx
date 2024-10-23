@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Alert, FlatList, Image, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
-import { CadastrarProdutoProps } from '../navigation/HomeNavigator';
+import { ConsultarProdutosProps } from '../navigation/HomeNavigator';
 import { styles } from '../styles/styles';
 import { Produto } from '../types/Produto';
 
 import firestore from "@react-native-firebase/firestore";
 
-const TelaConsProduto = (props: CadastrarProdutoProps) => {
+const TelaConsProduto = (props: ConsultarProdutosProps) => {
 	const [produtos, setProdutos] = useState([] as Produto[]);
 
 	useEffect(() => {
@@ -38,6 +38,12 @@ const TelaConsProduto = (props: CadastrarProdutoProps) => {
 			.catch((error) => console.log(error));
 	}
 
+	function alterarProduto(id: string) {
+		props.navigation.navigate(
+			'TelaAlterarProduto',
+			{ id: id }
+		)
+	}
 
 	return (
 		<View style={styles.tela}>
@@ -46,6 +52,7 @@ const TelaConsProduto = (props: CadastrarProdutoProps) => {
 				renderItem={(info) =>
 					<ItemProduto
 						onDeletar={deletarProduto}
+						onAlterar={() => alterarProduto(info.item.id)}
 						numeroOrdem={info.index + 1}
 						prod={info.item} />} />
 			<View
@@ -64,6 +71,7 @@ type ItemProdutoProps = {
 	numeroOrdem: number,
 	prod: Produto,
 	onDeletar: (id: string) => void;
+	onAlterar: (id: string) => void;
 }
 
 const ItemProduto = (props: ItemProdutoProps) => {
@@ -74,25 +82,34 @@ const ItemProduto = (props: ItemProdutoProps) => {
 				<Text style={{ fontSize: 30, color: 'black' }}>
 					{props.numeroOrdem + ' - ' + props.prod.nome}
 				</Text>
-				<Text style={{ fontSize: 20 }}>
+				<Text style={{ color: 'black', fontSize: 20 }}>
 					Id: {props.prod.id}
 				</Text>
-				<Text style={{ fontSize: 20 }}>
+				<Text style={{ color: 'black', fontSize: 20 }}>
 					Código de barras: {props.prod.codigoDeBarras}
 				</Text>
-				<Text style={{ fontSize: 20 }}>
+				<Text style={{ color: 'black', fontSize: 20 }}>
 					Preço: R${props.prod.preco.toFixed(2)}
 				</Text>
 			</View>
-			<View style={styles_local.botao_deletar}>
+			<View
+				style={{ display: 'flex', gap: 10 }}>
 				<Pressable
+					style={styles_local.botao_deletar}
 					onPress={() => props.onDeletar(props.prod.id)}>
 					<Text style={styles_local.texto_botao_card}>
-						X
+						Excluir
+					</Text>
+				</Pressable>
+				<Pressable
+					style={styles_local.botao_alterar}
+					onPress={() => props.onAlterar(props.prod.id)}>
+					<Text
+						style={{ paddingHorizontal: 10, color: 'white' }}>
+						Alterar
 					</Text>
 				</Pressable>
 			</View>
-
 		</View>
 	)
 }
@@ -108,6 +125,13 @@ const styles_local = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		backgroundColor: 'red',
+		padding: 10,
+		borderRadius: 5,
+	},
+	botao_alterar: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: 'green',
 		padding: 10,
 		borderRadius: 5,
 	},
