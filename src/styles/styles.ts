@@ -66,6 +66,24 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 20,
     },
+    container: {
+        flex: 1,
+    },
+    profileContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+    profileImage: {
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        marginRight: 10,
+    },
+    profileName: {
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
 });
 
 export { styles };

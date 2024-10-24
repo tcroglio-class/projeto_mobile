@@ -7,6 +7,8 @@ import TelaCadastroUsuario from "../layouts/TelaCadastroUsuario";
 import TelaCadastroProduto from "../layouts/TelaCadastroProduto";
 import TelaConsProduto from "../layouts/TelaConsProduto";
 import TelaAlterarProduto from "../layouts/TelaAlterarProduto";
+import TelaLoginAcad from "../layouts/TelaLoginAcad";
+import TelaPrincipalAcad from "../layouts/TelaPrincipalAcad";
 
 type RootStackParamList = {
     TelaPrincipal: { texto: string };
@@ -17,6 +19,8 @@ type RootStackParamList = {
     TelaCadastroProduto: undefined;
     TelaConsProduto: undefined;
     TelaAlterarProduto: { id: string };
+    TelaLoginAcad: undefined;
+    TelaPrincipalAcad: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -24,8 +28,15 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const HomeNavigator = () => {
     return (
         <Stack.Navigator
-            initialRouteName="TelaLogin"
+            initialRouteName="TelaPrincipalAcad"
             screenOptions={{ headerShown: false }}>
+
+            <Stack.Screen name="TelaLoginAcad" component={TelaLoginAcad} />
+
+            <Stack.Screen name="TelaPrincipalAcad" component={TelaPrincipalAcad} />
+
+
+            {/* acima disso é da academia */}
 
             <Stack.Screen name="TelaLogin" component={TelaLogin} />
 
@@ -72,6 +83,12 @@ type AlterarProdutoProps = NativeStackScreenProps<RootStackParamList,
 type ConsultarProdutosProps = NativeStackScreenProps<RootStackParamList,
     'TelaConsProduto'>;
 
+type LoginAcadProps = NativeStackScreenProps<RootStackParamList,
+    'TelaLoginAcad'>;
+
+type PrincipalAcadProps = NativeStackScreenProps<RootStackParamList,
+    'TelaPrincipalAcad'>;
+
 
 export default HomeNavigator;
 export type {
@@ -83,4 +100,6 @@ export type {
     CadastrarProdutoProps,
     ConsultarProdutosProps,
     AlterarProdutoProps,
+    LoginAcadProps,
+    PrincipalAcadProps,
 };
