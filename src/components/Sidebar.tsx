@@ -10,7 +10,7 @@ const Sidebar = (props: any) => {
 	};
 
 	const navigationView = () => (
-		<View style={[styles.container, { backgroundColor: '#fff', padding: 20 }]}>
+		<View style={[styles.container, { backgroundColor: 'black', padding: 20 }]}>
 			<View
 				style={styles.profileContainer}>
 				<Image
@@ -18,25 +18,29 @@ const Sidebar = (props: any) => {
 					style={styles.profileImage}
 				/>
 				<View>
-					<Text style={[styles.texto_botao, { color: 'black', marginTop: 20 }]}>Nome do Usuário</Text>
+					<Text style={[styles.texto_botao, { color: '#FFFFFF', marginTop: 30 }]}>Nome do Usuário</Text>
 				</View>
 			</View>
 
+			<View style={[styles.sidebar, { backgroundColor: 'black', }]}>
+
 			<Pressable onPress={() => props.navigation.navigate('TelaElementos')}>
-				<Text style={[styles.texto_botao, { color: 'black', marginTop: 20 }]}>Início</Text>
+				<Text style={[styles.texto_botao, { color: '#FFFFFF', marginBottom:20  }]}>Início</Text>
 			</Pressable>
 			<Pressable onPress={() => props.navigation.navigate('TelaCadastroProduto')}>
-				<Text style={[styles.texto_botao, { color: 'black', marginTop: 20 }]}>Treinos</Text>
+				<Text style={[styles.texto_botao, { color: '#FFFFFF', marginBottom:20  }]}>Treinos</Text>
 			</Pressable>
 			<Pressable onPress={() => props.navigation.navigate('TelaConsProduto')}>
-				<Text style={[styles.texto_botao, { color: 'black', marginTop: 20 }]}>Alunos</Text>
+				<Text style={[styles.texto_botao, { color: '#FFFFFF', marginBottom:20 }]}>Alunos</Text>
 			</Pressable>
 			<Pressable onPress={() => props.navigation.navigate('TelaConsProduto')}>
-				<Text style={[styles.texto_botao, { color: 'black', marginTop: 20 }]}>Notícias</Text>
+				<Text style={[styles.texto_botao, { color: '#FFFFFF', marginBottom:20 }]}>Notícias</Text>
 			</Pressable>
+			
+			</View>
 
 			<Pressable onPress={handleLogout}>
-				<Text style={[styles.texto_botao, { color: 'red', marginTop: 20 }]}>Deslogar (tem que ficar la embaixo)</Text>
+				<Text style={[styles.texto_sair, { color: 'red', marginBottom:20 }]}>Deslogar </Text>
 			</Pressable>
 		</View >
 	);

@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import Sidebar from "../components/Sidebar";
 
 const styles = StyleSheet.create({
     tela: {
@@ -83,6 +84,16 @@ const styles = StyleSheet.create({
     profileName: {
         fontSize: 18,
         fontWeight: 'bold',
+    },
+
+
+    sidebar: {
+        marginBottom: 370,
+    },
+
+    texto_sair: {
+        fontSize: 20,
+
     },
 });
 
