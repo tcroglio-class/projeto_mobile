@@ -1,4 +1,5 @@
 type Aluno = {
+	id: string,
 	nome: string,
 	peso: string,
 	altura: string,

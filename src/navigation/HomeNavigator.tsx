@@ -10,6 +10,8 @@ import TelaAlterarProduto from "../layouts/TelaAlterarProduto";
 import TelaLoginAcad from "../layouts/TelaLoginAcad";
 import TelaPrincipalAcad from "../layouts/TelaPrincipalAcad";
 import TelaCadastroAlunoAcad from "../layouts/TelaCadastroAlunoAcad";
+import TelaEditarAlunoAcad from "../layouts/TelaEditarAlunoAcad";
+import TelaConsultarAlunoAcad from "../layouts/TelaConsultarAlunoAcad";
 
 type RootStackParamList = {
     TelaPrincipal: { texto: string };
@@ -23,6 +25,8 @@ type RootStackParamList = {
     TelaLoginAcad: undefined;
     TelaPrincipalAcad: undefined;
     TelaCadastroAlunoAcad: undefined;
+    TelaEditarAlunoAcad: { id: string };
+    TelaConsultarAlunoAcad: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -38,6 +42,10 @@ const HomeNavigator = () => {
             <Stack.Screen name="TelaPrincipalAcad" component={TelaPrincipalAcad} />
 
             <Stack.Screen name="TelaCadastroAlunoAcad" component={TelaCadastroAlunoAcad} />
+
+            <Stack.Screen name="TelaEditarAlunoAcad" component={TelaEditarAlunoAcad} />
+
+            <Stack.Screen name="TelaConsultarAlunoAcad" component={TelaConsultarAlunoAcad} />
 
 
             {/* acima disso é da academia */}
@@ -96,6 +104,12 @@ type PrincipalAcadProps = NativeStackScreenProps<RootStackParamList,
 type CadastroAlunoAcadProps = NativeStackScreenProps<RootStackParamList,
     'TelaCadastroAlunoAcad'>;
 
+type EditarAlunoAcadProps = NativeStackScreenProps<RootStackParamList,
+    'TelaEditarAlunoAcad'>;
+
+type ConsultarAlunoAcadProps = NativeStackScreenProps<RootStackParamList,
+    'TelaConsultarAlunoAcad'>;
+
 
 export default HomeNavigator;
 export type {
@@ -110,4 +124,6 @@ export type {
     LoginAcadProps,
     PrincipalAcadProps,
     CadastroAlunoAcadProps,
+    EditarAlunoAcadProps,
+    ConsultarAlunoAcadProps,
 };
