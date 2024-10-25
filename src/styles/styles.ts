@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import Sidebar from "../components/Sidebar";
+import TelaPrincipal from "../layouts/TelaPrincipal";
 
 const styles = StyleSheet.create({
     tela: {
@@ -18,15 +19,18 @@ const styles = StyleSheet.create({
     },
     botao: {
         justifyContent: 'center',
-        backgroundColor: 'green',
-        paddingVertical: 10,
-        paddingHorizontal: 30,
-        marginTop: 20,
-        borderRadius: 10
+        backgroundColor: '#fbec5d',
+        paddingVertical: 20,
+        paddingHorizontal:5,
+        marginTop: 350,
+        borderRadius: 100
     },
+
     texto_botao: {
         fontSize: 20,
-        color: 'white'
+        color: 'blacK',
+        textAlign:'center',
+
     },
 
     caixa_texto: {
@@ -67,14 +71,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 20,
     },
+  
     container: {
         flex: 1,
     },
+
     profileContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 20,
     },
+
     profileImage: {
         width: 50,
         height: 50,
@@ -95,6 +102,35 @@ const styles = StyleSheet.create({
         fontSize: 20,
 
     },
+
+    noticias: {
+ 
+        padding: 10,
+        gap: 20,
+        marginTop: 100,
+        backgroundColor: "black"
+
+    },
+
+    telaPrincipal:{
+        backgroundColor: 'black'
+
+    },
+
+    princi:{
+        flex: 1,
+        backgroundColor:'black',
+    },
+
+    imagem:{
+        position: 'absolute', // Posiciona a imagem em relação à View pai
+        top: 30, // Distância do topo
+        right: 30, // Distância da direita
+        width: 70, // Largura da imagem
+        height: 70, // Altura da imagem
+    }
+
+
 });
 
 export { styles };
