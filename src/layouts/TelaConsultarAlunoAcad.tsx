@@ -19,7 +19,7 @@ const TelaConsultarAlunoAcad = (props: ConsultarAlunoAcadProps) => {
 					return {
 						id: doc.id,
 						...alunoData,
-						ativo: alunoData.ativo === 1 ? 'ativo' : 'inativo' // Conversão de 1 ou 0 para string	
+						ativo: alunoData.ativo == '1' ? 'ativo' : 'inativo'
 					}
 				}) as Aluno[];
 				setAlunos(data);

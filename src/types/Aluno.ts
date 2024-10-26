@@ -4,7 +4,7 @@ type Aluno = {
 	peso: string,
 	altura: string,
 	genero: string,
-	ativo: number
+	ativo: string
 }
 
 export type { Aluno };
