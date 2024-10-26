@@ -23,49 +23,47 @@ const Sidebar = (props: any) => {
 			</View>
 
 			<View style={[styles.sidebar, { backgroundColor: 'black', }]}>
-
-				<Pressable onPress={() => props.navigation.navigate('TelaElementos')}>
+				<Pressable onPress={() => props.navigation.navigate('TelaPrincipalAcad')}>
 					<Text style={styles.textoSidebar}>Início</Text>
 				</Pressable>
-				<Pressable onPress={() => props.navigation.navigate('TelaCadastroProduto')}>
+				<Pressable onPress={() => props.navigation.navigate('TelaConsultarTreinoAcad')}>
 					<Text style={styles.textoSidebar}>Treinos</Text>
 				</Pressable>
-				<Pressable onPress={() => props.navigation.navigate('TelaConsProduto')}>
+				<Pressable onPress={() => props.navigation.navigate('TelaConsultarAlunoAcad')}>
 					<Text style={styles.textoSidebar}>Alunos</Text>
 				</Pressable>
-				<Pressable onPress={() => props.navigation.navigate('TelaConsProduto')}>
+				<Pressable onPress={() => props.navigation.navigate('TelaConsultarNoticia')}>
 					<Text style={styles.textoSidebar}>Notícias</Text>
 				</Pressable>
-
 			</View>
 
 			<Pressable onPress={handleLogout}>
-				<Text style={[styles.texto_sair, { color: 'red', marginBottom: 20 }]}>Deslogar </Text>
+				<Text style={[styles.texto_sair, { color: 'red', marginBottom: 20 }]}>Deslogar</Text>
 			</Pressable>
 		</View >
 	);
 
-return (
-	<DrawerLayoutAndroid
-		ref={drawer}
-		drawerWidth={300}
-		drawerPosition="left"
-		renderNavigationView={navigationView}
-	>
-		<View style={{ flex: 1 }}>
-			<Pressable
-				style={{ position: 'absolute', top: 40, left: 10, zIndex: 1 }}
-				onPress={() => drawer.current?.openDrawer()}
-			>
-				<Image
-					source={require('../images/menu.png')}
-					style={{ width: 30, height: 30 }}
-				/>
-			</Pressable>
-			{props.children}
-		</View>
-	</DrawerLayoutAndroid>
-);
+	return (
+		<DrawerLayoutAndroid
+			ref={drawer}
+			drawerWidth={300}
+			drawerPosition="left"
+			renderNavigationView={navigationView}
+		>
+			<View style={{ flex: 1 }}>
+				<Pressable
+					style={{ position: 'absolute', top: 40, left: 10, zIndex: 1 }}
+					onPress={() => drawer.current?.openDrawer()}
+				>
+					<Image
+						source={require('../images/menu.png')}
+						style={{ width: 30, height: 30 }}
+					/>
+				</Pressable>
+				{props.children}
+			</View>
+		</DrawerLayoutAndroid>
+	);
 };
 
 export default Sidebar;
