@@ -89,11 +89,17 @@ const TelaCadastroTreinoAcad = (props: CadastroTreinoAcadProps) => {
 	return (
 		<View style={styles.tela}>
 			<View style={styles.content}>
+
+			<Image
+					source={require('../images/logoAcademia.png')}
+					style={styles.imagem}
+				/>
+
 				<View style={styles.inputContent}>
-					<Text style={[styles.texto_botao, { fontSize: 20, marginBottom: 10 }]}>CADASTRO DE TREINO</Text>
+					<Text style={styles.titulo1}>CADASTRO DE TREINO</Text>
 
 
-					<Text style={{ marginBottom: 2, marginLeft: 10, color: 'white' }}>Selecione o aluno</Text>
+					<Text style={styles.titulo2}>Selecione o aluno</Text>
 					<View style={[{ borderColor: 'white', borderWidth: 1, borderRadius: 5 }, styles.caixa_texto]}>
 						<Picker
 							onValueChange={(itemValue) => {
@@ -113,29 +119,28 @@ const TelaCadastroTreinoAcad = (props: CadastroTreinoAcadProps) => {
 						</Picker>
 					</View>
 
-
-					<Text style={{ marginLeft: 10, color: 'white' }}>mudar o que ta escrito no botao abaixo</Text>
 					<Pressable style={(state) => [
-						{ width: 100 },
-						styles.botao,
+						{ width: 10 },
+						styles.botao2,
 						state.pressed ? { opacity: 0.5 } : null
 					]}
 						onPress={() => { cadastrarAluno() }}>
-						<Text style={styles.texto_botao}>cadastrar aluno na hora</Text>
+						<Text style={styles.texto_botao}>CADASTRAR NOVO ALUNO</Text>
 					</Pressable>
 
 
-					<Text style={{ marginBottom: 2, marginLeft: 10, color: 'white' }}>Tipo do treino</Text>
+					<Text style={styles.titulo2}>Tipo do treino</Text>
 					<TextInput
 						onChangeText={(text) => {
 							setTipoDeTreino(text);
 						}}
 						style={styles.caixa_texto}
 						placeholder="Tipo de treino"
+						
 					/>
 
 
-					<Text style={{ marginBottom: 2, marginLeft: 10, color: 'white' }}>Dia da semana</Text>
+					<Text style={styles.titulo2}>Dia da semana</Text>
 					<View style={[{ borderColor: 'white', borderWidth: 1, borderRadius: 5 }, styles.caixa_texto]}>
 						<Picker
 							onValueChange={(itemValue) => setDiaDaSemana(itemValue)}
@@ -156,7 +161,7 @@ const TelaCadastroTreinoAcad = (props: CadastroTreinoAcadProps) => {
 				<View style={{ flexDirection: 'row', justifyContent: 'center', gap: 30 }}>
 					<Pressable style={(state) => [
 						{ width: 100 },
-						styles.botao,
+						styles.botaoFinal2,
 						state.pressed ? { opacity: 0.5 } : null
 					]}
 						onPress={() => { props.navigation.goBack(); }}>
@@ -164,7 +169,7 @@ const TelaCadastroTreinoAcad = (props: CadastroTreinoAcadProps) => {
 					</Pressable>
 					<Pressable style={(state) => [
 						{ width: 100 },
-						styles.botao,
+						styles.botaoFinal2,
 						state.pressed ? { opacity: 0.5 } : null
 					]}
 						onPress={() => { cadastrar() }}>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, Pressable, Text, TextInput, View } from 'react-native';
+import { Alert, Image, Pressable, Text, TextInput, View } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { CadastroAlunoAcadProps } from '../navigation/HomeNavigator';
 import { styles } from '../styles/login-styles';
@@ -19,7 +19,7 @@ const TelaCadastroAlunoAcad = (props: CadastroAlunoAcadProps) => {
 				peso: peso,
 				altura: altura,
 				genero: genero,
-				ativo: 1
+				ativo: '1'
 			} as Aluno;
 
 			firestore()
@@ -78,8 +78,8 @@ const TelaCadastroAlunoAcad = (props: CadastroAlunoAcadProps) => {
 
 			<View style={styles.content}>
 				<View style={styles.inputContent}>
-					<Text style={[styles.texto_botao, { fontSize: 20, marginBottom: 10 }]}>CADASTRO DE ALUNO</Text>
-					<Text style={{ marginBottom: 2, marginLeft: 10, color: 'white' }}>Nome</Text>
+					<Text style={styles.titulo1}>CADASTRO DE ALUNO</Text>
+
 					<TextInput
 						onChangeText={(text) => {
 							setNome(text);
@@ -87,9 +87,7 @@ const TelaCadastroAlunoAcad = (props: CadastroAlunoAcadProps) => {
 						style={styles.caixa_texto}
 						placeholder="Nome"
 						placeholderTextColor='#fef7b1'
-
 					/>
-					<Text style={{ marginBottom: 2, marginLeft: 10, color: 'white' }}>Peso</Text>
 					<TextInput
 						onChangeText={(text) => {
 							setPeso(text);
@@ -100,7 +98,6 @@ const TelaCadastroAlunoAcad = (props: CadastroAlunoAcadProps) => {
 						placeholderTextColor='#fef7b1'
 
 					/>
-					<Text style={{ marginBottom: 2, marginLeft: 10, color: 'white' }}>Altura</Text>
 					<TextInput
 						onChangeText={(text) => {
 							setAltura(text);
@@ -111,7 +108,7 @@ const TelaCadastroAlunoAcad = (props: CadastroAlunoAcadProps) => {
 						placeholderTextColor='#fef7b1'
 
 					/>
-					<Text style={{ marginBottom: 2, marginLeft: 10, color: 'white' }}>Gênero</Text>
+
 					<Picker
 						selectedValue={genero}
 						style={styles.caixa_texto}
@@ -120,6 +117,9 @@ const TelaCadastroAlunoAcad = (props: CadastroAlunoAcadProps) => {
 						<Picker.Item label="Masculino" value="masculino" />
 						<Picker.Item label="Feminino" value="feminino" />
 					</Picker>
+
+
+
 					<View style={{ flexDirection: 'row', justifyContent: 'center', gap: 30 }}>
 						<Pressable style={(state) => [
 							{ width: 100 },
@@ -139,7 +139,6 @@ const TelaCadastroAlunoAcad = (props: CadastroAlunoAcadProps) => {
 							<Text style={styles.texto_botao}>SALVAR</Text>
 						</Pressable>
 					</View>
-					<Text style={{ textAlign: 'center' }}>esses botoeszinhos tem que ficar la no final da tela kathleen</Text>
 				</View>
 			</View>
 		</View>

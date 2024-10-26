@@ -8,19 +8,13 @@ import Sidebar from '../components/Sidebar';
 const TelaPrincipalAcad = (props: PrincipalAcadProps) => {
 	function constroiTela() {
 		props.navigation.navigate(
-			'TelaCadastroAlunoAcad',
+			'TelaCadastroTreinoAcad',
 		)
 	}
 
 	return (
-		<View style={styles.princi}>
+		<View style={styles.tela}>
 
-			{/* <Pressable onPress={() => props.navigation.openDrawer()}>
-				<Image
-					source={require('../images/menu2.png')} // Ajuste o caminho conforme necessário
-					style={styles.imagemMenu}
-				/>
-			</Pressable> */}
 			<Image
 				source={require('../images/logoAcademia.png')} // Ajuste o caminho conforme necessário
 				style={styles.imagem}

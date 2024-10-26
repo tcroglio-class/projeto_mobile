@@ -3,21 +3,31 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
 	tela: {
 		flex: 1,
-		backgroundColor: 'black'
+		backgroundColor: '#2E2E2E'
 		
 	},
 	titulo1: {
-		fontSize: 30,
+		fontSize: 27,
 		fontWeight: 'bold',
-		color: '#fbec5d',
-		textAlign:'center'
+		color: '#d9b52b',
+		textAlign:'center',
+		marginBottom: 20,
+
+	},
+
+	titulo2:{
+		fontSize: 20,
+		color: '#d9b52b',
+		fontWeight: 'bold',
+
 
 	},
 	content: {
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
-		marginTop: 100
+		marginTop: 100,
+	
 	},
 	inputContent: {
 		width: '80%',
@@ -34,13 +44,37 @@ const styles = StyleSheet.create({
 	},
 	botao: {
 		justifyContent: 'center',
-		backgroundColor: '#fbec5d',
+		backgroundColor: '#d9b52b',
 		paddingVertical: 10,
 		paddingHorizontal: 10,
 		marginTop: 90,
 		borderRadius: 6,
 		width: 150
 	},
+
+	botaoFinal2: {
+		justifyContent: 'center',
+		backgroundColor: '#d9b52b',
+		paddingVertical: 10,
+		paddingHorizontal: 10,
+		marginTop: 30,
+		borderRadius: 6,
+		width: 150
+	},
+
+	botao2: {
+		justifyContent: 'center',
+		backgroundColor: '#d9b52b',
+		paddingVertical: 10,
+		paddingHorizontal: 10,
+		margin: 15,
+		marginTop: 10,
+		borderRadius: 6,
+		width: 250
+	},
+
+
+
 	texto_botao: {
 		fontSize: 15,
 		color: 'black',
@@ -68,8 +102,8 @@ const styles = StyleSheet.create({
 
 	imagem: {
 		position: 'absolute',
-		top: 20,
-		right: 20,
+		top: -80,
+		right: 30,
 		width: 70, // ajuste conforme necessário
 		height: 70, // ajuste conforme necessário
 		resizeMode: 'contain', // mantém a proporção

@@ -5,7 +5,7 @@ import TelaPrincipal from "../layouts/TelaPrincipal";
 const styles = StyleSheet.create({
     tela: {
         flex: 1,
-        backgroundColor: '#FFFACD'
+        backgroundColor: '#2E2E2E'
     },
     titulo1: {
         fontSize: 40,
@@ -19,11 +19,11 @@ const styles = StyleSheet.create({
     },
     botao: {
         justifyContent: 'center',
-        backgroundColor: '#fbec5d',
+        backgroundColor: '#d9b52b',
         paddingVertical: 20,
         paddingHorizontal: 5,
-        marginTop: 350,
-        borderRadius: 100
+        marginTop: 320,
+        borderRadius: 90
     },
 
     texto_botao: {
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
 
     textoSidebar:{
         fontSize: 25,
-        color: '#fbec5d',
+        color: '#d9b52b',
         marginBottom: 20,
         fontWeight: 'bold',
     },
