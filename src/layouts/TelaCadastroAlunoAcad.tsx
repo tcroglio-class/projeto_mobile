@@ -70,6 +70,12 @@ const TelaCadastroAlunoAcad = (props: CadastroAlunoAcadProps) => {
 
 	return (
 		<View style={styles.tela}>
+
+			<Image
+				source={require('../images/logoAcademia.png')} // Ajuste o caminho conforme necessário
+				style={styles.imagem}
+			/>
+
 			<View style={styles.content}>
 				<View style={styles.inputContent}>
 					<Text style={[styles.texto_botao, { fontSize: 20, marginBottom: 10 }]}>CADASTRO DE ALUNO</Text>
@@ -80,6 +86,8 @@ const TelaCadastroAlunoAcad = (props: CadastroAlunoAcadProps) => {
 						}}
 						style={styles.caixa_texto}
 						placeholder="Nome"
+						placeholderTextColor='#fef7b1'
+
 					/>
 					<Text style={{ marginBottom: 2, marginLeft: 10, color: 'white' }}>Peso</Text>
 					<TextInput
@@ -89,6 +97,8 @@ const TelaCadastroAlunoAcad = (props: CadastroAlunoAcadProps) => {
 						style={styles.caixa_texto}
 						keyboardType='numeric'
 						placeholder="Peso"
+						placeholderTextColor='#fef7b1'
+
 					/>
 					<Text style={{ marginBottom: 2, marginLeft: 10, color: 'white' }}>Altura</Text>
 					<TextInput
@@ -98,6 +108,8 @@ const TelaCadastroAlunoAcad = (props: CadastroAlunoAcadProps) => {
 						style={styles.caixa_texto}
 						keyboardType='numeric'
 						placeholder="Altura"
+						placeholderTextColor='#fef7b1'
+
 					/>
 					<Text style={{ marginBottom: 2, marginLeft: 10, color: 'white' }}>Gênero</Text>
 					<Picker
@@ -117,6 +129,7 @@ const TelaCadastroAlunoAcad = (props: CadastroAlunoAcadProps) => {
 							onPress={() => { props.navigation.goBack(); }}>
 							<Text style={styles.texto_botao}>CANCELAR</Text>
 						</Pressable>
+
 						<Pressable style={(state) => [
 							{ width: 100 },
 							styles.botao,

@@ -3,12 +3,15 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
 	tela: {
 		flex: 1,
-		backgroundColor: '#011f37'
+		backgroundColor: 'black'
+		
 	},
 	titulo1: {
-		fontSize: 40,
+		fontSize: 30,
 		fontWeight: 'bold',
-		color: 'white'
+		color: '#fbec5d',
+		textAlign:'center'
+
 	},
 	content: {
 		flex: 1,
@@ -31,25 +34,28 @@ const styles = StyleSheet.create({
 	},
 	botao: {
 		justifyContent: 'center',
-		backgroundColor: '#00a1f6',
+		backgroundColor: '#fbec5d',
 		paddingVertical: 10,
 		paddingHorizontal: 10,
-		marginTop: 20,
-		borderRadius: 6
+		marginTop: 90,
+		borderRadius: 6,
+		width: 150
 	},
 	texto_botao: {
 		fontSize: 15,
-		color: 'white',
+		color: 'black',
 		textAlign: 'center'
 	},
 	caixa_texto: {
-		color: 'white',
+		color: '#fbec5d',
 		paddingLeft: 10,
 		fontSize: 16,
 		borderWidth: 1,
 		borderRadius: 4,
-		borderColor: '#00a1f6',
-		margin: 3,
+		borderColor: '#fbec5d',
+		margin: 15,
+		
+		
 	},
 	imagem_250: {
 		width: 250,
@@ -58,7 +64,17 @@ const styles = StyleSheet.create({
 	imagem_150: {
 		width: 150,
 		height: 150
-	}
+	},
+
+	imagem: {
+		position: 'absolute',
+		top: 20,
+		right: 20,
+		width: 70, // ajuste conforme necessário
+		height: 70, // ajuste conforme necessário
+		resizeMode: 'contain', // mantém a proporção
+	},
+
 });
 
 export { styles };

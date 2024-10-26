@@ -15,6 +15,17 @@ const TelaPrincipalAcad = (props: PrincipalAcadProps) => {
 	return (
 		<View style={styles.princi}>
 
+			{/* <Pressable onPress={() => props.navigation.openDrawer()}>
+				<Image
+					source={require('../images/menu2.png')} // Ajuste o caminho conforme necessário
+					style={styles.imagemMenu}
+				/>
+			</Pressable> */}
+			<Image
+				source={require('../images/logoAcademia.png')} // Ajuste o caminho conforme necessário
+				style={styles.imagem}
+			/>
+
 			<Sidebar navigation={props.navigation} >
 				<View style={styles.noticias}>
 					<Text style={[styles.titulo1, { color: '#fbec5d', textAlign: 'center', }]}>NOTÍCIAS</Text>
@@ -28,13 +39,6 @@ const TelaPrincipalAcad = (props: PrincipalAcadProps) => {
 						<Text style={styles.texto_botao}>CADASTRAR ALUNO</Text>
 					</Pressable>
 				</View>
-				
-				<Image
-					source={require('../images/logoAcademia.png')} // Ajuste o caminho conforme necessário
-					style={styles.imagem}
-				/>
-
-
 			</Sidebar>
 		</View>
 

@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#fbec5d',
         paddingVertical: 20,
-        paddingHorizontal:5,
+        paddingHorizontal: 5,
         marginTop: 350,
         borderRadius: 100
     },
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     texto_botao: {
         fontSize: 20,
         color: 'blacK',
-        textAlign:'center',
+        textAlign: 'center',
 
     },
 
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 20,
     },
-  
+
     container: {
         flex: 1,
     },
@@ -93,18 +93,28 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
 
-
+//Sidebar
     sidebar: {
-        marginBottom: 370,
+        marginBottom: 300,
     },
 
+    textoSidebar:{
+        fontSize: 25,
+        color: '#fbec5d',
+        marginBottom: 20,
+        fontWeight: 'bold',
+    },
+
+
+//
     texto_sair: {
         fontSize: 20,
-
+        fontWeight: 'bold',
+      
     },
 
     noticias: {
- 
+
         padding: 10,
         gap: 20,
         marginTop: 100,
@@ -112,23 +122,25 @@ const styles = StyleSheet.create({
 
     },
 
-    telaPrincipal:{
+    telaPrincipal: {
         backgroundColor: 'black'
 
     },
 
-    princi:{
+    princi: {
         flex: 1,
-        backgroundColor:'black',
+        backgroundColor: 'black',
     },
 
-    imagem:{
+
+    //Logo 
+    imagem: {
         position: 'absolute', // Posiciona a imagem em relação à View pai
         top: 30, // Distância do topo
         right: 30, // Distância da direita
         width: 70, // Largura da imagem
         height: 70, // Altura da imagem
-    }
+    },
 
 
 });
