@@ -9,6 +9,7 @@ import TelaConsultarTreinoAcad from "../layouts/TelaConsultarTreinoAcad";
 import TelaCadastroNoticiaAcad from "../layouts/TelaCadastroNoticiaAcad";
 import TelaEditarTreinoAcad from "../layouts/TelaEditarTreinoAcad";
 
+
 type RootStackParamList = {
     TelaLoginAcad: undefined;
     TelaPrincipalAcad: { userLogado: string };

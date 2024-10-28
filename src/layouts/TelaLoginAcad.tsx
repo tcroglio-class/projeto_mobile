@@ -94,7 +94,7 @@ const TelaLoginAcad = (props: LoginAcadProps) => {
                     />
 
                     <View style={styles.inputContent}>
-                        <Text style={styles.texto_botao}>LOGIN DA ACADEMIA (MUDAR DEPOIS)</Text>
+                        <Text style={styles.titulo1}>LOGIN DA ACADEMIA</Text>
                         <TextInput
                             onChangeText={(text) => {
                                 setEmail(text);
@@ -109,7 +109,7 @@ const TelaLoginAcad = (props: LoginAcadProps) => {
                             style={styles.caixa_texto}
                             placeholder="Senha"
                         />
-                        <Pressable style={(state) => [styles.botao, state.pressed ? { opacity: 0.5 } : null]}
+                        <Pressable style={(state) => [styles.botao2, state.pressed ? { opacity: 0.5 } : null]}
                             onPress={() => { logar() }}>
                             <Text style={styles.texto_botao}>Login</Text>
                         </Pressable>

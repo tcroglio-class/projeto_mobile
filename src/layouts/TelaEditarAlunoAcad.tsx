@@ -86,7 +86,7 @@ const TelaEditarAlunoAcad = (props: EditarAlunoAcadProps) => {
 			<View style={styles.tela}>
 				<View style={styles.content}>
 					<View style={styles.inputContent}>
-						<Text style={[styles.texto_botao, { fontSize: 20, marginBottom: 10 }]}>EDITAR ALUNO</Text>
+						<Text style={[styles.titulo1, { fontSize: 20, marginBottom: 10 }]}>EDITAR ALUNO</Text>
 
 						<Text style={{ marginBottom: 2, marginLeft: 10, color: 'white' }}>Nome</Text>
 						<TextInput
@@ -153,9 +153,6 @@ const TelaEditarAlunoAcad = (props: EditarAlunoAcadProps) => {
 							</Pressable>
 
 						</View>
-
-						<Text style={{ textAlign: 'center' }}>esses botoeszinhos tem que ficar la no final da tela kathleen</Text>
-
 					</View>
 				</View>
 			</View>

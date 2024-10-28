@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
-		marginTop: 200,
+		marginTop: 0,
 	
 	},
 	inputContent: {
@@ -45,9 +45,9 @@ const styles = StyleSheet.create({
 		backgroundColor: '#d9b52b',
 		paddingVertical: 10,
 		paddingHorizontal: 10,
-		marginTop: -20,
+		marginTop: 0,
 		borderRadius: 6,
-		width: 200
+		width: 100
 	},
 
 	botao2: {
@@ -59,6 +59,16 @@ const styles = StyleSheet.create({
 		marginTop: 20,
 		borderRadius: 6,
 		width: 250
+	},
+	botao3: {
+		justifyContent: 'center',
+		backgroundColor: '#d9b52b',
+		paddingVertical: 10,
+		paddingHorizontal: 10,
+		margin: 15,
+		marginTop: 20,
+		borderRadius: 6,
+		width: 100
 	},
 	texto_botao: {
 		fontSize: 15,

@@ -41,7 +41,7 @@ const Sidebar = (props: any) => {
 					</Pressable>
 					<View style={sidebar_styles.divider}/>
 
-					<Pressable onPress={() => props.navigation.navigate('TelaConsultarNoticiaAcad')}>
+					<Pressable onPress={() => props.navigation.navigate('TelaCadastroNoticiaAcad')}>
 						<Text style={sidebar_styles.textoSidebar}>Notícias</Text>
 					</Pressable>
 					<View style={sidebar_styles.divider}/>
