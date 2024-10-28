@@ -4,6 +4,7 @@ import { CadastroNoticiaAcadProps } from '../navigation/HomeNavigator';
 import { styles } from '../styles/login-styles';
 import { Noticia } from '../types/Noticia';
 import firestore from "@react-native-firebase/firestore";
+import Sidebar from '../components/Sidebar';
 
 const TelaCadastroNoticiaAcad = (props: CadastroNoticiaAcadProps) => {
 	const [titulo, setTitulo] = useState('');
@@ -49,57 +50,60 @@ const TelaCadastroNoticiaAcad = (props: CadastroNoticiaAcadProps) => {
 	}
 
 	return (
-		<View style={styles.tela}>
-			<Image
-				source={require('../images/logoAcademia.png')}
-				style={styles.imagem}
-			/>
+		<Sidebar navigation={props.navigation} >
+			<View style={styles.tela}>
+				<Image
+					source={require('../images/logoAcademia.png')}
+					style={styles.imagem}
+				/>
 
-			<View style={styles.content}>
-				<View style={styles.inputContent}>
-					<Text style={[styles.texto_botao, { color: 'white', fontSize: 20, marginBottom: 10 }]}>CADASTRO DE NOTÍCIA</Text>
-					<Text style={{ marginBottom: 2, marginLeft: 10, color: 'white' }}>TÍTULO</Text>
-					<TextInput
-						onChangeText={(text) => {
-							setTitulo(text);
-						}}
-						style={styles.caixa_texto}
-						placeholder="TÍTULO"
-						placeholderTextColor='#fef7b1'
+				<View style={styles.content}>
+					<View style={styles.inputContent}>
+						<Text style={[styles.texto_botao, { color: 'white', fontSize: 20, marginBottom: 10 }]}>CADASTRO DE NOTÍCIA</Text>
+						<Text style={{ marginBottom: 2, marginLeft: 10, color: 'white' }}>TÍTULO</Text>
+						<TextInput
+							onChangeText={(text) => {
+								setTitulo(text);
+							}}
+							style={styles.caixa_texto}
+							placeholder="TÍTULO"
+							placeholderTextColor='#fef7b1'
 
-					/>
-					<Text style={{ marginBottom: 2, marginLeft: 10, color: 'white' }}>MENSAGEM</Text>
-					<TextInput
-						onChangeText={(text) => {
-							setMensagem(text);
-						}}
-						style={styles.caixa_texto}
-						placeholder="MENSAGEM"
-						placeholderTextColor='#fef7b1'
+						/>
+						<Text style={{ marginBottom: 2, marginLeft: 10, color: 'white' }}>MENSAGEM</Text>
+						<TextInput
+							onChangeText={(text) => {
+								setMensagem(text);
+							}}
+							style={styles.caixa_texto}
+							placeholder="MENSAGEM"
+							placeholderTextColor='#fef7b1'
 
-					/>
-					<View style={{ flexDirection: 'row', justifyContent: 'center', gap: 30 }}>
-						<Pressable style={(state) => [
-							{ width: 100 },
-							styles.botao,
-							state.pressed ? { opacity: 0.5 } : null
-						]}
-							onPress={() => { props.navigation.goBack(); }}>
-							<Text style={styles.texto_botao}>CANCELAR</Text>
-						</Pressable>
+						/>
+						<View style={{ flexDirection: 'row', justifyContent: 'center', gap: 30 }}>
+							<Pressable style={(state) => [
+								{ width: 100 },
+								styles.botao,
+								state.pressed ? { opacity: 0.5 } : null
+							]}
+								onPress={() => { props.navigation.goBack(); }}>
+								<Text style={styles.texto_botao}>CANCELAR</Text>
+							</Pressable>
 
-						<Pressable style={(state) => [
-							{ width: 100 },
-							styles.botao,
-							state.pressed ? { opacity: 0.5 } : null
-						]}
-							onPress={() => { cadastrar() }}>
-							<Text style={styles.texto_botao}>SALVAR</Text>
-						</Pressable>
+							<Pressable style={(state) => [
+								{ width: 100 },
+								styles.botao,
+								state.pressed ? { opacity: 0.5 } : null
+							]}
+								onPress={() => { cadastrar() }}>
+								<Text style={styles.texto_botao}>SALVAR</Text>
+							</Pressable>
+						</View>
 					</View>
 				</View>
 			</View>
-		</View>
+		</Sidebar>
+
 	);
 }
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Alert, Image, Pressable, Text, TextInput, View } from 'react-native';
-import { CadastroTreinoAcadProps } from '../navigation/HomeNavigator';
+import { EditarTreinoAcadProps } from '../navigation/HomeNavigator';
 import { Picker } from '@react-native-picker/picker';
 import { Aluno } from '../types/Aluno';
 import { Treino } from '../types/Treino';
@@ -11,7 +11,8 @@ import { treinostyles } from '../styles/treino-styles';
 
 import firestore from "@react-native-firebase/firestore";
 
-const TelaCadastroTreinoAcad = (props: CadastroTreinoAcadProps) => {
+const TelaEditarTreinoAcad = (props: EditarTreinoAcadProps) => {
+	const [idTreino, setIdTreino] = useState('');
 	const [alunoID, setAlunoID] = useState('');
 	const [nomeAluno, setNomeAluno] = useState('');
 	const [tipoDeTreino, setTipoDeTreino] = useState('');
@@ -34,9 +35,12 @@ const TelaCadastroTreinoAcad = (props: CadastroTreinoAcadProps) => {
 		fetchAlunos();
 	}, []);
 
-	function cadastrar() {
-		if (verificaCampos()) {
+	useEffect(() => {
+		carregar(props.route.params.id);
+	}, []);
 
+	function editar() {
+		if (verificaCampos()) {
 			const treino = {
 				idAluno: alunoID,
 				nomeAluno: nomeAluno,
@@ -46,11 +50,12 @@ const TelaCadastroTreinoAcad = (props: CadastroTreinoAcadProps) => {
 
 			firestore()
 				.collection('treinos')
-				.add(treino)
+				.doc(idTreino)
+				.update(treino)
 				.then(() => {
 					Alert.alert(
 						"Treino",
-						"Treino adicionado com sucesso!"
+						"Treino editado com sucesso!"
 					)
 					props.navigation.goBack();
 				})
@@ -89,6 +94,23 @@ const TelaCadastroTreinoAcad = (props: CadastroTreinoAcadProps) => {
 		return true;
 	}
 
+	async function carregar(id: string) {
+		const resultado = await firestore()
+			.collection('treinos')
+			.doc(id)
+			.get();
+
+		const treino = {
+			...resultado.data()
+		} as Treino;
+
+		setIdTreino(props.route.params.id);
+		setAlunoID(treino.idAluno);
+		setNomeAluno(treino.nomeAluno);
+		setTipoDeTreino(treino.tipoDeTreino);
+		setDiaDaSemana(treino.diaDaSemana);
+	};
+
 	return (
 		<Sidebar navigation={props.navigation} >
 			<View style={styles.tela}>
@@ -100,9 +122,9 @@ const TelaCadastroTreinoAcad = (props: CadastroTreinoAcadProps) => {
 					/>
 
 					<View style={treinostyles.inputContent}>
-						<Text style={treinostyles.titulo}>CADASTRO DE TREINO</Text>
+						<Text style={treinostyles.titulo}>EDITAR TREINO</Text>
 
-						<Text style={treinostyles.titulo2}>Selecione o aluno</Text>
+						<Text style={treinostyles.titulo2}>Aluno</Text>
 						<View style={treinostyles.caixa_texto}>
 							<Picker
 								onValueChange={(itemValue) => {
@@ -140,8 +162,8 @@ const TelaCadastroTreinoAcad = (props: CadastroTreinoAcadProps) => {
 							onChangeText={(text) => {
 								setTipoDeTreino(text);
 							}}
+							value={tipoDeTreino}
 							style={[treinostyles.caixa_texto, { paddingLeft: 20 }]}
-							placeholderTextColor={'white'}
 							placeholder="Tipo de treino"
 						/>
 
@@ -178,8 +200,8 @@ const TelaCadastroTreinoAcad = (props: CadastroTreinoAcadProps) => {
 							treinostyles.botaoFinal2,
 							state.pressed ? { opacity: 0.5 } : null
 						]}
-							onPress={() => { cadastrar() }}>
-							<Text style={treinostyles.texto_botao}>SALVAR</Text>
+							onPress={() => { editar() }}>
+							<Text style={treinostyles.texto_botao}>EDITAR</Text>
 						</Pressable>
 					</View>
 				</View>
@@ -189,4 +211,4 @@ const TelaCadastroTreinoAcad = (props: CadastroTreinoAcadProps) => {
 	);
 }
 
-export default TelaCadastroTreinoAcad;
+export default TelaEditarTreinoAcad;

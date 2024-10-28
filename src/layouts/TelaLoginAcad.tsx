@@ -13,7 +13,10 @@ const TelaLoginAcad = (props: LoginAcadProps) => {
         if (verificaCampos()) {
             auth().signInWithEmailAndPassword(email, senha)
                 .then(() => {
-                    props.navigation.navigate('TelaPrincipalAcad');
+                    props.navigation.navigate(
+                        'TelaPrincipalAcad',
+                        { userLogado: email }
+                    );
                 })
                 .catch((error) => tratarErros(String(error)));
         }
@@ -86,7 +89,7 @@ const TelaLoginAcad = (props: LoginAcadProps) => {
             <ScrollView>
                 <View style={styles.content}>
                     <Image
-                        source={require('../images/twitter.png')}
+                        source={require('../images/logoAcademia.png')}
                         style={styles.imagem_250}
                     />
 

@@ -5,6 +5,7 @@ import { CadastroAlunoAcadProps } from '../navigation/HomeNavigator';
 import { styles } from '../styles/login-styles';
 import { Aluno } from '../types/Aluno';
 import firestore from "@react-native-firebase/firestore";
+import Sidebar from '../components/Sidebar';
 
 const TelaCadastroAlunoAcad = (props: CadastroAlunoAcadProps) => {
 	const [nome, setNome] = useState('');
@@ -69,79 +70,81 @@ const TelaCadastroAlunoAcad = (props: CadastroAlunoAcadProps) => {
 	}
 
 	return (
-		<View style={styles.tela}>
+		<Sidebar navigation={props.navigation} >
+			<View style={styles.tela}>
 
-			<Image
-				source={require('../images/logoAcademia.png')} // Ajuste o caminho conforme necessário
-				style={styles.imagem}
-			/>
+				<Image
+					source={require('../images/logoAcademia.png')}
+					style={styles.imagem}
+				/>
 
-			<View style={styles.content}>
-				<View style={styles.inputContent}>
-					<Text style={styles.titulo1}>CADASTRO DE ALUNO</Text>
+				<View style={styles.content}>
+					<View style={styles.inputContent}>
+						<Text style={styles.titulo1}>CADASTRO DE ALUNO</Text>
 
-					<TextInput
-						onChangeText={(text) => {
-							setNome(text);
-						}}
-						style={styles.caixa_texto}
-						placeholder="Nome"
-						placeholderTextColor='#fef7b1'
-					/>
-					<TextInput
-						onChangeText={(text) => {
-							setPeso(text);
-						}}
-						style={styles.caixa_texto}
-						keyboardType='numeric'
-						placeholder="Peso"
-						placeholderTextColor='#fef7b1'
+						<TextInput
+							onChangeText={(text) => {
+								setNome(text);
+							}}
+							style={styles.caixa_texto}
+							placeholder="Nome"
+							placeholderTextColor='#fef7b1'
+						/>
+						<TextInput
+							onChangeText={(text) => {
+								setPeso(text);
+							}}
+							style={styles.caixa_texto}
+							keyboardType='numeric'
+							placeholder="Peso"
+							placeholderTextColor='#fef7b1'
 
-					/>
-					<TextInput
-						onChangeText={(text) => {
-							setAltura(text);
-						}}
-						style={styles.caixa_texto}
-						keyboardType='numeric'
-						placeholder="Altura"
-						placeholderTextColor='#fef7b1'
+						/>
+						<TextInput
+							onChangeText={(text) => {
+								setAltura(text);
+							}}
+							style={styles.caixa_texto}
+							keyboardType='numeric'
+							placeholder="Altura"
+							placeholderTextColor='#fef7b1'
 
-					/>
+						/>
 
-					<Picker
-						selectedValue={genero}
-						style={styles.caixa_texto}
-						onValueChange={(itemValue) => setGenero(itemValue)}
-					>
-						<Picker.Item label="Masculino" value="masculino" />
-						<Picker.Item label="Feminino" value="feminino" />
-					</Picker>
+						<Picker
+							selectedValue={genero}
+							style={styles.caixa_texto}
+							onValueChange={(itemValue) => setGenero(itemValue)}
+						>
+							<Picker.Item label="Masculino" value="masculino" />
+							<Picker.Item label="Feminino" value="feminino" />
+						</Picker>
 
 
 
-					<View style={{ flexDirection: 'row', justifyContent: 'center', gap: 30 }}>
-						<Pressable style={(state) => [
-							{ width: 100 },
-							styles.botao,
-							state.pressed ? { opacity: 0.5 } : null
-						]}
-							onPress={() => { props.navigation.goBack(); }}>
-							<Text style={styles.texto_botao}>CANCELAR</Text>
-						</Pressable>
+						<View style={{ flexDirection: 'row', justifyContent: 'center', gap: 30 }}>
+							<Pressable style={(state) => [
+								{ width: 100 },
+								styles.botao,
+								state.pressed ? { opacity: 0.5 } : null
+							]}
+								onPress={() => { props.navigation.goBack(); }}>
+								<Text style={styles.texto_botao}>CANCELAR</Text>
+							</Pressable>
 
-						<Pressable style={(state) => [
-							{ width: 100 },
-							styles.botao,
-							state.pressed ? { opacity: 0.5 } : null
-						]}
-							onPress={() => { cadastrar() }}>
-							<Text style={styles.texto_botao}>SALVAR</Text>
-						</Pressable>
+							<Pressable style={(state) => [
+								{ width: 100 },
+								styles.botao,
+								state.pressed ? { opacity: 0.5 } : null
+							]}
+								onPress={() => { cadastrar() }}>
+								<Text style={styles.texto_botao}>SALVAR</Text>
+							</Pressable>
+						</View>
 					</View>
 				</View>
 			</View>
-		</View>
+		</Sidebar>
 	);
 }
 

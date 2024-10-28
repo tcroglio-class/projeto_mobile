@@ -1,10 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Alert, FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import { ConsultarTreinoAcadProps } from '../navigation/HomeNavigator';
-import { styles } from '../styles/styles';
-import { Aluno } from '../types/Aluno';
 import firestore from "@react-native-firebase/firestore";
 import { Treino } from '../types/Treino';
+import Sidebar from '../components/Sidebar';
+import { treinostyles } from '../styles/treino-styles';
+import { styles } from '../styles/styles';
+
+const formatarDias = (diaSelecionado: string) => {
+	const dias = [
+		{ nome: 'domingo', abreviacao: 'D' },
+		{ nome: 'segunda', abreviacao: 'S' },
+		{ nome: 'terca', abreviacao: 'T' },
+		{ nome: 'quarta', abreviacao: 'Q' },
+		{ nome: 'quinta', abreviacao: 'Q' },
+		{ nome: 'sexta', abreviacao: 'S' },
+		{ nome: 'sabado', abreviacao: 'S' }
+	];
+
+	return dias.map((dia, index) => (
+		<Text
+			key={index}
+			style={[
+				treinostyles.textoDia,
+				dia.nome === diaSelecionado ? { fontWeight: 'bold' } : { fontWeight: '300' }
+			]}
+		>
+			{dia.abreviacao}
+		</Text>
+	));
+};
+
 
 const TelaConsultarTreinoAcad = (props: ConsultarTreinoAcadProps) => {
 	const [treinos, setTreinos] = useState([] as Treino[]);
@@ -30,68 +56,90 @@ const TelaConsultarTreinoAcad = (props: ConsultarTreinoAcadProps) => {
 		return () => subscribe();
 	}, []);
 
-	function deletarProduto(id: string) {
+	function deletarTreino(id: string) {
 		firestore()
-			.collection('alunos')
+			.collection('treinos')
 			.doc(id)
 			.delete()
 			.then(() => {
-				Alert.alert("Alerta", "Aluno excluído com sucesso.");
+				Alert.alert("Alerta", "Treino excluído com sucesso.");
 			})
 			.catch((error) => console.log(error));
 	}
 
-	function alterarProduto(id: string) {
-		props.navigation.navigate('TelaEditarAlunoAcad', { id });
+	function alterarTreino(id: string) {
+		props.navigation.navigate(
+			'TelaEditarTreinoAcad',
+			{ id: id });
 	}
 
+	function cadastrarTreino() {
+		props.navigation.navigate(
+			'TelaCadastroTreinoAcad'
+		)
+	}
+
+
 	return (
-		<View style={styles.tela}>
-			<FlatList
-				data={treinos}
-				numColumns={2} 
-				keyExtractor={(item) => item.id}
-				renderItem={(info) => (
-					<ItemTreino
-						onDeletar={deletarProduto}
-						onAlterar={() => alterarProduto(info.item.id)}
-						numeroOrdem={info.index + 1}
-						treino={info.item}
+		<Sidebar navigation={props.navigation} >
+			<View style={styles.tela}>
+				<Image
+					source={require('../images/logoAcademia.png')}
+					style={styles.imagem}
+				/>
+
+				<View
+					style={treinostyles.containerConsultar}>
+					<Text style={treinostyles.titulo}> Treinos </Text>
+					<FlatList
+						data={treinos}
+						numColumns={2}
+						keyExtractor={(item) => item.id}
+						renderItem={(info) => (
+							<ItemTreino
+								onDeletar={deletarTreino}
+								onAlterar={() => alterarTreino(info.item.id)}
+								numeroOrdem={info.index + 1}
+								treino={info.item}
+							/>
+						)}
+						contentContainerStyle={treinostyles.gridContainer}
 					/>
-				)}
-				contentContainerStyle={styles_local.gridContainer}
-			/>
-			<View style={styles.centralizar}>
-				<Pressable
-					style={[styles.botao, { width: '40%' }]}
-					onPress={() => { props.navigation.goBack(); }}>
-					<Text style={styles.texto_botao}>Voltar</Text>
-				</Pressable>
+				</View>
+				<View
+					style={[styles.centralizar, styles.botao_flutuante]}>
+					<Pressable
+						style={treinostyles.botao}
+						onPress={() => { cadastrarTreino() }}>
+						<Text style={[treinostyles.texto_botao, { fontSize: 15 }]}>CRIAR TREINO</Text>
+					</Pressable>
+				</View>
+
 			</View>
-		</View>
+		</Sidebar>
 	);
 }
 
 type ItemTreinoProps = {
-	numeroOrdem: number,
-	treino: Treino,
+	numeroOrdem: number;
+	treino: Treino;
 	onDeletar: (id: string) => void;
 	onAlterar: (id: string) => void;
 }
 
 const ItemTreino = (props: ItemTreinoProps) => {
 	return (
-		<Pressable onPress={() => props.onAlterar(props.treino.id)} style={styles_local.gridItem}>
-			<View style={styles_local.card}>
-				<View style={styles_local.dados_card}>
-					<Text style={styles_local.nomeAluno}>
+		<Pressable onPress={() => props.onAlterar(props.treino.id)} style={treinostyles.gridItem}>
+			<View style={treinostyles.card}>
+				<View style={treinostyles.dados_card}>
+					<Text style={treinostyles.nomeAluno}>
 						{props.treino.nomeAluno}
 					</Text>
-					<Text style={styles_local.textoTipo}>
-						{props.treino.tipoDeTreino}
+					<Text style={treinostyles.textoTipo}>
+						Treino: {props.treino.tipoDeTreino}
 					</Text>
-					<Text style={styles_local.textoDia}>
-						{props.treino.diaDaSemana}
+					<Text style={treinostyles.textoDia}>
+						{formatarDias(props.treino.diaDaSemana)}
 					</Text>
 				</View>
 			</View>
@@ -100,44 +148,3 @@ const ItemTreino = (props: ItemTreinoProps) => {
 }
 
 export default TelaConsultarTreinoAcad;
-
-const styles_local = StyleSheet.create({
-	gridContainer: {
-		justifyContent: 'space-between',
-		paddingHorizontal: 10,
-	},
-	gridItem: {
-		flex: 1,
-		margin: 10,
-		maxWidth: '48%', // Para ter dois itens na mesma linha
-	},
-	card: {
-		backgroundColor: '#fff',
-		borderRadius: 10,
-		padding: 15,
-		elevation: 3,
-		shadowColor: '#000',
-		shadowOffset: { width: 0, height: 1 },
-		shadowOpacity: 0.3,
-		shadowRadius: 1,
-	},
-	dados_card: {
-		flex: 1,
-		marginBottom: 10,
-	},
-	nomeAluno: {
-		fontSize: 20,
-		fontWeight: 'bold',
-		color: 'black',
-		marginBottom: 5,
-	},
-	textoTipo: {
-		color: 'black',
-		fontSize: 16,
-		marginBottom: 5,
-	},
-	textoDia: {
-		color: 'black',
-		fontSize: 16,
-	},
-});

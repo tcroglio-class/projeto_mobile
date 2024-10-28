@@ -1,22 +1,24 @@
 import { StyleSheet } from "react-native";
-import Sidebar from "../components/Sidebar";
-import TelaPrincipal from "../layouts/TelaPrincipal";
+
 
 const styles = StyleSheet.create({
     tela: {
         flex: 1,
         backgroundColor: '#2E2E2E'
     },
+
     titulo1: {
         fontSize: 40,
         fontWeight: 'bold',
         color: 'black'
     },
+
     titulo2: {
         fontSize: 30,
         fontWeight: 'bold',
         color: 'black'
     },
+
     botao: {
         justifyContent: 'center',
         backgroundColor: '#d9b52b',
@@ -30,7 +32,6 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: 'blacK',
         textAlign: 'center',
-
     },
 
     caixa_texto: {
@@ -53,73 +54,20 @@ const styles = StyleSheet.create({
     click: {
         opacity: 50
     },
-    card: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        backgroundColor: '#f8f8f8',
-        padding: 15,
-        borderRadius: 10,
-        marginVertical: 10,
-        shadowColor: '#000',
-        shadowOpacity: 0.1,
-        shadowRadius: 5,
-        elevation: 3,
-    },
+
     centralizar: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 20,
     },
 
     container: {
         flex: 1,
     },
 
-    profileContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 20,
-    },
-
-    profileImage: {
-        width: 50,
-        height: 50,
-        borderRadius: 25,
-        marginRight: 10,
-    },
-    profileName: {
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
-
-//Sidebar
-    sidebar: {
-        marginBottom: 300,
-    },
-
-    textoSidebar:{
-        fontSize: 25,
-        color: '#d9b52b',
-        marginBottom: 20,
-        fontWeight: 'bold',
-    },
-
-
-//
-    texto_sair: {
-        fontSize: 20,
-        fontWeight: 'bold',
-      
-    },
-
     noticias: {
-
         padding: 10,
         gap: 20,
         marginTop: 100,
-        backgroundColor: "black"
-
     },
 
     telaPrincipal: {
@@ -132,17 +80,26 @@ const styles = StyleSheet.create({
         backgroundColor: 'black',
     },
 
-
-    //Logo 
     imagem: {
-        position: 'absolute', // Posiciona a imagem em relação à View pai
-        top: 30, // Distância do topo
-        right: 30, // Distância da direita
-        width: 70, // Largura da imagem
-        height: 70, // Altura da imagem
+        position: 'absolute',
+        top: 30,
+        right: 30,
+        width: 70,
+        height: 70,
     },
 
+    botao_flutuante: {
+        position: 'absolute',
+        bottom: 30,
+        left: '50%',
+        width: 200,
+        marginLeft: -100,
+        zIndex: 1000,
+    },
 
+    bold: {
+        fontWeight: 'bold'
+    }
 });
 
 export { styles };

@@ -5,6 +5,7 @@ import { styles } from '../styles/styles';
 import { Noticia } from '../types/Noticia';
 
 import firestore from "@react-native-firebase/firestore";
+import Sidebar from '../components/Sidebar';
 
 const TelaConsultarNoticiaAcad = (props: ConsultarAlunoAcadProps) => {
 	const [noticias, setNoticias] = useState([] as Noticia[]);
@@ -48,24 +49,27 @@ const TelaConsultarNoticiaAcad = (props: ConsultarAlunoAcadProps) => {
 	}
 
 	return (
-		<View style={styles.tela}>
-			<FlatList
-				data={noticias}
-				renderItem={(info) =>
-					<ItemAluno
-						onDeletar={deletarProduto}
-						onAlterar={() => alterarProduto(info.item.id)}
-						numeroOrdem={info.index + 1}
-						noticia={info.item} />} />
-			<View
-				style={styles.centralizar}>
-				<Pressable
-					style={[styles.botao, { width: '40%' }]}
-					onPress={() => { props.navigation.goBack() }}>
-					<Text style={styles.texto_botao}>Voltar</Text>
-				</Pressable>
+		<Sidebar navigation={props.navigation} >
+			<View style={styles.tela}>
+				<FlatList
+					data={noticias}
+					renderItem={(info) =>
+						<ItemAluno
+							onDeletar={deletarProduto}
+							onAlterar={() => alterarProduto(info.item.id)}
+							numeroOrdem={info.index + 1}
+							noticia={info.item} />} />
+				<View
+					style={styles.centralizar}>
+					<Pressable
+						style={[styles.botao, { width: '40%' }]}
+						onPress={() => { props.navigation.goBack() }}>
+						<Text style={styles.texto_botao}>Voltar</Text>
+					</Pressable>
+				</View>
 			</View>
-		</View >
+		</Sidebar>
+
 	);
 }
 
@@ -80,7 +84,7 @@ const ItemAluno = (props: ItemAlunoProps) => {
 
 	return (
 		<Pressable>
-			<View style={styles.card}>
+			<View>
 				<View style={styles_local.dados_card}>
 					<Text style={{ fontSize: 30, color: 'black' }}>
 						NOTICIA

@@ -19,8 +19,6 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 		color: '#d9b52b',
 		fontWeight: 'bold',
-
-
 	},
 	content: {
 		flex: 1,
@@ -52,16 +50,6 @@ const styles = StyleSheet.create({
 		width: 150
 	},
 
-	botaoFinal2: {
-		justifyContent: 'center',
-		backgroundColor: '#d9b52b',
-		paddingVertical: 10,
-		paddingHorizontal: 10,
-		marginTop: 30,
-		borderRadius: 6,
-		width: 150
-	},
-
 	botao2: {
 		justifyContent: 'center',
 		backgroundColor: '#d9b52b',
@@ -72,9 +60,6 @@ const styles = StyleSheet.create({
 		borderRadius: 6,
 		width: 250
 	},
-
-
-
 	texto_botao: {
 		fontSize: 15,
 		color: 'black',
@@ -87,9 +72,7 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 		borderRadius: 4,
 		borderColor: '#fbec5d',
-		margin: 15,
-		
-		
+		margin: 15,		
 	},
 	imagem_250: {
 		width: 250,
@@ -101,12 +84,11 @@ const styles = StyleSheet.create({
 	},
 
 	imagem: {
-		position: 'absolute',
-		top: -80,
-		right: 30,
-		width: 70, // ajuste conforme necessário
-		height: 70, // ajuste conforme necessário
-		resizeMode: 'contain', // mantém a proporção
+        position: 'absolute',
+        top: 30,
+        right: 30,
+        width: 70,
+        height: 70,
 	},
 
 });

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, FlatList, Image, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Alert, FlatList, Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { ConsultarAlunoAcadProps } from '../navigation/HomeNavigator';
-import { styles } from '../styles/styles';
 import { Aluno } from '../types/Aluno';
-
 import firestore from "@react-native-firebase/firestore";
+import Sidebar from '../components/Sidebar';
+
+import { styles } from '../styles/styles';
+import { alunostyles } from '../styles/aluno-styles';
 
 const TelaConsultarAlunoAcad = (props: ConsultarAlunoAcadProps) => {
-	const [produtos, setAlunos] = useState([] as Aluno[]);
+	const [alunos, setAlunos] = useState([] as Aluno[]);
 
 	useEffect(() => {
 		const subscribe = firestore()
@@ -15,11 +17,10 @@ const TelaConsultarAlunoAcad = (props: ConsultarAlunoAcadProps) => {
 			.onSnapshot(querySnapshot => {
 				const data = querySnapshot.docs.map(doc => {
 					const alunoData = doc.data() as Aluno;
-
 					return {
-						id: doc.id,
+						alunoId: doc.id,
 						...alunoData,
-						ativo: alunoData.ativo == '1' ? 'ativo' : 'inativo'
+						ativo: alunoData.ativo == '1' ? 'Ativo' : 'Inativo'
 					}
 				}) as Aluno[];
 				setAlunos(data);
@@ -27,46 +28,80 @@ const TelaConsultarAlunoAcad = (props: ConsultarAlunoAcadProps) => {
 		return () => subscribe();
 	}, []);
 
-	function deletarProduto(id: string) {
+	function apagaAlunoNoBanco(id: string) {
+		console.log(`Tentando excluir o aluno com ID: ${id}`);
 		firestore()
 			.collection('alunos')
 			.doc(id)
 			.delete()
 			.then(() => {
-				Alert.alert(
-					"Alerta",
-					"Aluno excluído com sucesso."
-				)
+				console.log("Aluno excluído com sucesso.");
+				Alert.alert("Alerta", "Aluno excluído com sucesso.");
 			})
-			.catch((error) => console.log(error));
+			.catch((error) => {
+				console.error("Erro ao excluir o aluno: ", error);
+			});
 	}
 
-	function alterarProduto(id: string) {
+	function deletarAluno(id: string) {
+		Alert.alert(
+			"Confirmar Exclusão",
+			"Você tem certeza que deseja excluir este aluno?",
+			[
+				{ text: "Cancelar", style: "cancel" },
+				{ text: "OK", onPress: () => apagaAlunoNoBanco(id) }
+			]
+		);
+	}
+
+	function alterarAluno(id: string) {
+		props.navigation.navigate('TelaEditarAlunoAcad', { id: id });
+	}
+
+	function cadastrarAluno() {
 		props.navigation.navigate(
-			'TelaEditarAlunoAcad',
-			{ id: id }
-		)
+			'TelaCadastroAlunoAcad'
+		);
 	}
 
 	return (
-		<View style={styles.tela}>
-			<FlatList
-				data={produtos}
-				renderItem={(info) =>
-					<ItemAluno
-						onDeletar={deletarProduto}
-						onAlterar={() => alterarProduto(info.item.id)}
-						numeroOrdem={info.index + 1}
-						aluno={info.item} />} />
-			<View
-				style={styles.centralizar}>
+		<Sidebar navigation={props.navigation}>
+			<ScrollView style={styles.tela}>
+				<Image
+					source={require('../images/logoAcademia.png')}
+					style={styles.imagem}
+				/>
+				<View style={[alunostyles.containerConsultar, { paddingBottom: 100 }]}>
+					<Text style={alunostyles.titulo}> ALUNOS </Text>
+
+					<View style={alunostyles.listContent}>
+						<FlatList
+							data={alunos}
+							renderItem={(info) => {
+								console.log("Info do item: ", info.item);
+								return (
+									<ItemAluno
+										onDeletar={() => deletarAluno(info.item.alunoId)}
+										onAlterar={() => alterarAluno(info.item.alunoId)}
+										numeroOrdem={info.index + 1}
+										aluno={info.item}
+									/>
+								);
+							}}
+							scrollEnabled={false}
+						/>
+					</View>
+
+				</View>
+			</ScrollView>
+			<View style={[styles.centralizar, styles.botao_flutuante]}>
 				<Pressable
-					style={[styles.botao, { width: '40%' }]}
-					onPress={() => { props.navigation.goBack() }}>
-					<Text style={styles.texto_botao}>Voltar</Text>
+					style={alunostyles.botao}
+					onPress={() => { cadastrarAluno() }}>
+					<Text style={alunostyles.texto_botao}>CADASTRAR ALUNO</Text>
 				</Pressable>
 			</View>
-		</View >
+		</Sidebar >
 	);
 }
 
@@ -78,57 +113,35 @@ type ItemAlunoProps = {
 }
 
 const ItemAluno = (props: ItemAlunoProps) => {
-
 	return (
-		<Pressable
-			onPress={() => props.onAlterar(props.aluno.id)}>
-			<View style={styles.card}>
-				<View style={styles_local.dados_card}>
-					<Text style={{ fontSize: 30, color: 'black' }}>
+		<Pressable onPress={() => props.onAlterar(props.aluno.id)}>
+			<View style={alunostyles.card}>
+				<View style={[alunostyles.dados_card, { flex: 1 }]}>
+					<Text style={alunostyles.textoNomeAluno}>
 						{props.numeroOrdem + ' - ' + props.aluno.nome}
 					</Text>
 					<Text style={{ color: 'black', fontSize: 20 }}>
-						Peso: {props.aluno.peso}kg
+						<Text style={styles.bold}>Peso:</Text> {props.aluno.peso}kg
 					</Text>
 					<Text style={{ color: 'black', fontSize: 20 }}>
-						Altura: {props.aluno.altura}m
+						<Text style={styles.bold}>Altura:</Text> {props.aluno.altura}m
 					</Text>
 					<Text style={{ color: 'black', fontSize: 20 }}>
-						Gênero: {props.aluno.genero}
+						<Text style={styles.bold}>Gênero:</Text> {props.aluno.genero}
 					</Text>
 					<Text style={{ color: 'black', fontSize: 20 }}>
-						Ativo: {props.aluno.ativo}
+						<Text style={styles.bold}>Ativo:</Text> {props.aluno.ativo}
 					</Text>
+				</View>
+				<View>
+					<Pressable onPress={() => props.onDeletar(props.aluno.id)}
+						style={alunostyles.botaoDeletar}>
+						<Text style={alunostyles.textoBotaoDeletar}>Deletar</Text>
+					</Pressable>
 				</View>
 			</View>
 		</Pressable>
-	)
+	);
 }
 
 export default TelaConsultarAlunoAcad;
-
-const styles_local = StyleSheet.create({
-	dados_card: {
-		flex: 1,
-		marginBottom: 10,
-	},
-	botao_deletar: {
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: 'red',
-		padding: 10,
-		borderRadius: 5,
-	},
-	botao_alterar: {
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: 'green',
-		padding: 10,
-		borderRadius: 5,
-	},
-	texto_botao_card: {
-		color: 'white',
-		fontSize: 18,
-		fontWeight: 'bold',
-	},
-})
